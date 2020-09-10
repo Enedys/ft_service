@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ftps-deployment
+  labels:
+    app: ftps
+spec:
+  selector:
+    matchLabels:
+      app: ftps
+  replicas: 1
+  template:
+    metadata:
+      name: ftps-pod
+      labels:
+        app: ftps
+    spec:
+      containers:
+        - name: ftps-container
+          image: ftps-image
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 20
+            - containerPort: 21
+            - containerPort: 21000

@@ -25,6 +25,13 @@ echo "${WP_IP}"
 docker build -t wordpress-image --build-arg IP=${WP_IP} ./wordpress ;
 kubectl apply -f ./wordpress/wordpress-deployment.yaml
 
+kubectl apply -f ./ftps/ftps-service.yaml ;
+FTP_IP=$(kubectl get svc ftps-service -o=custom-columns='DATA:status.loadBalancer.ingress' | sed -n 2p | cut -d ":" -f2 | tr -d "]")
+echo "${FTP_IP}"
+docker build -t ftps-image --build-arg IP=${FTP_IP} ./ftps > /dev/null;
+kubectl apply -f ./ftps/ftps-deployment.yaml ;
+
+
 kubectl apply -f ./nginx/nginx-deployment.yaml ;
 kubectl apply -f ./wordpress/wordpress-deployment.yaml ;
 kubectl apply -f ./phpmyadmin/phpmyadmin-deployment.yaml ;
