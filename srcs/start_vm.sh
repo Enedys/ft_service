@@ -11,12 +11,15 @@ minikube addons enable dashboard;
 eval $(minikube -p minikube docker-env) ;
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/namespace.yaml ;
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/metallb.yaml ;
-kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)";
-kubectl apply -f ./metallb/metallb.yaml;
+kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)" ;
+kubectl apply -f ./metallb/metallb.yaml ;
 
-docker build -t nginx-image ./nginx > /dev/null;
-docker build -t mysql-image ./mysql > /dev/null;
-docker build -t phpmyadmin-image ./phpmyadmin > /dev/null;
+docker build -t nginx-image ./nginx > /dev/null ;
+docker build -t mysql-image ./mysql > /dev/null ;
+docker build -t phpmyadmin-image ./phpmyadmin > /dev/null ;
+docker build -t influxdb-image ./influxdb ;
+dokcer build -t telegraf-image ./telegraf
+
 kubectl apply -f ./mysql/mysql-deployment.yaml ;
 
 kubectl apply -f ./wordpress/wordpress-service.yaml
@@ -35,3 +38,16 @@ kubectl apply -f ./ftps/ftps-deployment.yaml ;
 kubectl apply -f ./nginx/nginx-deployment.yaml ;
 kubectl apply -f ./wordpress/wordpress-deployment.yaml ;
 kubectl apply -f ./phpmyadmin/phpmyadmin-deployment.yaml ;
+
+kubectl apply -f ./influxdb/influxdb-service.yaml
+kubectl apply -f ./influxdb/influxdb-volume.yaml
+kubectl apply -f ./influxdb/influxdb-conf.yaml
+kubectl apply -f ./influxdb/influxdb-secret.yaml
+kubectl apply -f ./influxdb/influxdb-deployment.yaml
+
+
+kubectl apply -f ./telegraf/telegraf-conf.yaml
+kubectl apply -f ./telegraf/telegraf-secret.yaml
+kubectl apply -f ./telegraf/telegraf-deployment.yaml
+
+

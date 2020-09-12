@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: influxdb-deployment
+spec:
+  selector:
+    matchLabels:
+      app: influxdb
+  replicas: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      name: influxdb-pod
+      labels:
+        app: influxdb
+    spec:
+      containers:
+        - name: influxdb-container
+          image: influxdb-image
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8086
+          volumeMounts:
+            - name: influxdb-volume
+              mountPath: /var/lib/influxdb
+            - name: influxdb-config
+              mountPath: /etc/influxdb/influxdb.conf
+              subPath: influxdb.conf
+              readOnly: true
+          envFrom:
+            - secretRef:
+                name: influxdb-secret
+      volumes:
+        - name: influxdb-volume
+          persistentVolumeClaim:
+            claimName: influxdb-pvc
+        - name: influxdb-config
+          configMap:
+            name: influxdb-config
