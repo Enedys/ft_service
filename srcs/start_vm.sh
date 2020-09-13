@@ -18,7 +18,7 @@ docker build -t nginx-image ./nginx > /dev/null ;
 docker build -t mysql-image ./mysql > /dev/null ;
 docker build -t phpmyadmin-image ./phpmyadmin > /dev/null ;
 docker build -t influxdb-image ./influxdb ;
-dokcer build -t telegraf-image ./telegraf
+docker build -t telegraf-image ./telegraf
 
 kubectl apply -f ./mysql/mysql-deployment.yaml ;
 
@@ -34,20 +34,22 @@ echo "${FTP_IP}"
 docker build -t ftps-image --build-arg IP=${FTP_IP} ./ftps > /dev/null;
 kubectl apply -f ./ftps/ftps-deployment.yaml ;
 
-
 kubectl apply -f ./nginx/nginx-deployment.yaml ;
 kubectl apply -f ./wordpress/wordpress-deployment.yaml ;
 kubectl apply -f ./phpmyadmin/phpmyadmin-deployment.yaml ;
 
-kubectl apply -f ./influxdb/influxdb-service.yaml
-kubectl apply -f ./influxdb/influxdb-volume.yaml
-kubectl apply -f ./influxdb/influxdb-conf.yaml
-kubectl apply -f ./influxdb/influxdb-secret.yaml
-kubectl apply -f ./influxdb/influxdb-deployment.yaml
+kubectl apply -f ./influxdb/influxdb-service.yaml ;
+kubectl apply -f ./influxdb/influxdb-volume.yaml ;
+kubectl apply -f ./influxdb/influxdb-conf.yaml ;
+kubectl apply -f ./influxdb/influxdb-secret.yaml ;
+kubectl apply -f ./influxdb/influxdb-deployment.yaml ;
 
+kubectl apply -f ./telegraf/telegraf-conf.yaml ;
+kubectl apply -f ./telegraf/telegraf-secret.yaml ;
+kubectl apply -f ./telegraf/telegraf-deployment.yaml ;
 
-kubectl apply -f ./telegraf/telegraf-conf.yaml
-kubectl apply -f ./telegraf/telegraf-secret.yaml
-kubectl apply -f ./telegraf/telegraf-deployment.yaml
-
+docker build -t grafana-image ./grafana ;
+kubectl apply -f ./grafana/grafana-conf.yaml ;
+kubectl apply -f ./grafana/grafana-secret.yaml ;
+kubectl apply -f ./grafana/grafana-deployment.yaml ;
 
