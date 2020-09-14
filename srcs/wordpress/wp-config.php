@@ -39,7 +39,7 @@ define( 'DB_COLLATE', '' );
 
 /** Filesystem operation method. */
 
-define( 'WP_HOME', 'http://AAAIPAAA:5050' ); # EXTERNAL IP
+// define( 'WP_HOME', 'http://AAAIPAAA:5050' ); # EXTERNAL IP
 define( 'WP_SITEURL', 'http://AAAIPAAA:5050' ); # EXTERNAL IP
 
 /**#@+
@@ -87,7 +87,7 @@ define( 'WP_DEBUG', false );
 
 /** Absolute path to the WordPress directory. */
 if ( ! defined( 'ABSPATH' ) ) {
-	define( 'ABSPATH', __DIR__ . '/' );
+	define( 'ABSPATH', dirname( __FILE__ ) . '/' );
 }
 
 /** Sets up WordPress vars and included files. */
