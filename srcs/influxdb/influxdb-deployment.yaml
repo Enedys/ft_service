@@ -1,12 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: influxdb-deployment
+  name: influxdb
 spec:
   selector:
     matchLabels:
       app: influxdb
   replicas: 1
+  strategy:
+    type: Recreate
   minReadySeconds: 5
   template:
     metadata:

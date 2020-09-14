@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ftps-deployment
+  name: ftps
   labels:
     app: ftps
 spec:
@@ -9,6 +9,8 @@ spec:
     matchLabels:
       app: ftps
   replicas: 1
+  strategy:
+    type: Recreate
   template:
     metadata:
       name: ftps-pod

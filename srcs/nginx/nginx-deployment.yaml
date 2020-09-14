@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: nginx
   labels:
     app: nginx
 spec:
@@ -9,6 +9,10 @@ spec:
     matchLabels:
       app: nginx
   replicas: 1
+  strategy:
+    type: Recreate
+  strategy:
+    type: Recreate
   template:
     metadata:
       name: nginx-pod
@@ -24,3 +28,5 @@ spec:
               name: http
             - containerPort: 443
               name: https
+            - containerPort: 22
+              name: ssh

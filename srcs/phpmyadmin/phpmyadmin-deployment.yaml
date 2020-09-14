@@ -18,7 +18,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: phpmyadmin-deployment
+  name: phpmyadmin
   labels:
     app: phpmyadmin
 spec:
@@ -26,6 +26,8 @@ spec:
     matchLabels:
       app: phpmyadmin
   replicas: 1
+  strategy:
+    type: Recreate
   template:
     metadata:
       name: phpmyadmin-pod

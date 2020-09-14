@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wordpress-deployment
+  name: wordpress
   labels:
     app: wordpress
 spec:
@@ -9,6 +9,8 @@ spec:
     matchLabels:
       app: wordpress
   replicas: 1
+  strategy:
+    type: Recreate
   template:
     metadata:
       name: wordpress-pod

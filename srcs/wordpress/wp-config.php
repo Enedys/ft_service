@@ -39,7 +39,7 @@ define( 'DB_COLLATE', '' );
 
 /** Filesystem operation method. */
 
-// define( 'WP_HOME', 'http://AAAIPAAA:5050' ); # EXTERNAL IP
+define( 'WP_HOME', 'http://AAAIPAAA:5050' ); # EXTERNAL IP
 define( 'WP_SITEURL', 'http://AAAIPAAA:5050' ); # EXTERNAL IP
 
 /**#@+
