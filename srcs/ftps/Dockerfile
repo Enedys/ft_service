@@ -6,7 +6,7 @@
 #    By: kwillum <kwillum@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/10 15:49:50 by kwillum           #+#    #+#              #
-#    Updated: 2020/09/10 23:49:34 by kwillum          ###   ########.fr        #
+#    Updated: 2020/09/15 15:28:56 by kwillum          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,7 @@ RUN 	mkdir -p /var/ftp
 
 COPY	./my_vsftpd.conf /etc/vsftpd/vsftpd.conf
 COPY	start.sh /tmp/
-COPY	./create_user.sh /tmp/
 RUN		chmod +x /tmp/start.sh
-RUN		chmod +x /tmp/create_user.sh
 RUN		mkdir -p  /ftp_anon ;
 RUN		mkdir -p  /ftp_peer ;
 RUN		echo "super file!" > /ftp_peer/text.txt

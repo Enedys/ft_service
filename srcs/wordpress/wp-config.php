@@ -39,8 +39,8 @@ define( 'DB_COLLATE', '' );
 
 /** Filesystem operation method. */
 
-define( 'WP_HOME', 'http://AAAIPAAA:5050' ); # EXTERNAL IP
-define( 'WP_SITEURL', 'http://AAAIPAAA:5050' ); # EXTERNAL IP
+define( 'WP_HOME', 'http://192.168.99.95:5050' ); # EXTERNAL IP
+define( 'WP_SITEURL', 'http://192.168.99.95:5050' ); # EXTERNAL IP
 
 /**#@+
  * Authentication Unique Keys and Salts.
